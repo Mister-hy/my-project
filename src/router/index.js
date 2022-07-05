@@ -11,6 +11,21 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/',
+    component: () => import('../layout'),
+    children: [
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('../views/User.vue'),
+        meta:{
+          title:'首页',
+          icon:'home'
+        }
+      }
+    ]
   }
 ]
 

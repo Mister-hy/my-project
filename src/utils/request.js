@@ -1,38 +1,51 @@
+// 引入axios
 import axios from 'axios'
+// import store from '@/store'
+// import router from '@/router'
+import { ElMessage } from 'element-plus'
 
-const http = axios.create({
-  timeout: 5000,
-  // baseURL: process.env.VUE_APP_BASE_API,
-  baseURL: 'https://www.markerhub.com/vueadmin-java'
+// //创建axios实例
+const service = axios.create({
+  baseURL: 'https://www.markerhub.com/vueadmin-java',
+  timeout: 5000
 })
 
-//axios设置请求拦截器
-http.interceptors.request.use(
+// 请求拦截器
+service.interceptors.request.use(
   (config) => {
-    // config.headers.mytoken = 'nihao' //设置响应头
-    // config.headers.Authorization = 'Bearer ' + token
     return config
   },
-  (err) => {
-    console.log(err)
+  (error) => {
+    _showError('请求超时')
+    return Promise.reject(error)
   }
 )
 
-//axios设置响应拦截器
-http.interceptors.response.use(
+// 响应拦截器
+service.interceptors.response.use(
   (response) => {
-    return response //拦截处理响应结果，直接返回需要的数据
+    return response
   },
-  (err) => {
-    console.log(err)
+  (error) => {
+    // 响应失败进行信息提示
+    _showError(error.message)
+    return Promise.reject(error)
   }
 )
-// 统一参数处理
-const request = (options) => {
-  if (options.method.toLowerCase === 'get') {
-    options.params = options.data || []
-  }
-  http(options)
+
+// 响应提示信息
+const _showError = (message) => {
+  const info = message || '发生未知错误'
+  ElMessage.error(info)
 }
 
+// 统一了传参处理
+const request = (options) => {
+  if (options.method.toLowerCase() === 'get') {
+    options.params = options.data || {}
+  }
+  return service(options)
+}
+
+// 导出axios实例对象
 export default request

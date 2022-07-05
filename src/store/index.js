@@ -1,10 +1,7 @@
 import { createStore } from 'vuex'
-
+import user from "./modules/user";
 import persist from 'vuex-persistedstate'
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {user},
   plugins: [persist()]
 })
