@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { isExternal as external } from '../../utilts/validate.js'
+import { isExternal as external } from '../../utils/validate.js'
 import { defineProps, computed } from 'vue'
 const props = defineProps({
   // icon 图标

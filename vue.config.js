@@ -20,6 +20,16 @@ module.exports = defineConfig({
         }
       }
     }
+    //  proxy: {
+    //   '/api': {
+    //     target: process.env.VUE_APP_SERVICE_URL,
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //             // 将/api装换成 ''
+    //             '^/api': ''
+    //           }
+    //   }
+    // }
   },
   lintOnSave: true,
   chainWebpack(config) {
