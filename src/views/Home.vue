@@ -1,7 +1,13 @@
 <template>
-  <div></div>
+  <div class="home">
+    
+  </div>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+<script>
+export default {
+  components: {
+   
+  }
+}
+</script>

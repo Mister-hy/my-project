@@ -8,6 +8,6 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import './styles/index.scss'
 import installIcons from './icons/index.js'
-installIcons(app)
 const app = createApp(App)
+installIcons(app)
 app.use(store).use(router).use(Vant).use(ElementPlus).mount('#app')
